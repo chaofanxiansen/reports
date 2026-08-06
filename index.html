@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>市场复盘报告 · 2026-08-05</title>
+<title>市场复盘报告 · 2026-08-06 盘中</title>
 <style>
   :root {
     --paper: #F8F4ED;
@@ -12,12 +12,12 @@
     --ink-2: #6B6F73;
     --ink-3: #8E9196;
     --accent: #537D96;
-    --accent-hover: #456A80;
-    --accent-soft: rgba(83,125,150,.08);
     --line: rgba(122,96,88,.18);
     --line-soft: rgba(0,0,0,.05);
-    --up: #8B3A3A;      /* A股语境：涨为暗红 */
-    --down: #7BAE7F;    /* 跌为低饱和绿 */
+    --up: #8B3A3A;
+    --down: #7BAE7F;
+    --tag-bg: rgba(83,125,150,.1);
+    --tag-warn: rgba(160,110,50,.12);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { -webkit-font-smoothing: antialiased; }
@@ -29,12 +29,8 @@
     line-height: 1.75;
     padding: 40px 20px 64px;
   }
-  .page {
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  header { margin-bottom: 40px; }
+  .page { max-width: 760px; margin: 0 auto; }
+  header { margin-bottom: 36px; }
   .kicker {
     font-family: system-ui, -apple-system, 'PingFang SC', sans-serif;
     font-size: .8rem;
@@ -42,17 +38,8 @@
     color: var(--accent);
     margin-bottom: 16px;
   }
-  h1 {
-    font-size: 2.1rem;
-    font-weight: 500;
-    letter-spacing: .02em;
-    line-height: 1.3;
-    margin-bottom: 12px;
-  }
-  .sub {
-    color: var(--ink-2);
-    font-size: .95rem;
-  }
+  h1 { font-size: 2rem; font-weight: 500; letter-spacing: .02em; line-height: 1.3; margin-bottom: 12px; }
+  .sub { color: var(--ink-2); font-size: .95rem; }
   .meta {
     margin-top: 16px;
     font-family: system-ui, -apple-system, 'PingFang SC', sans-serif;
@@ -60,126 +47,52 @@
     color: var(--ink-3);
     letter-spacing: .04em;
   }
-  hr {
-    border: none;
-    border-top: 1px solid var(--line);
-    margin: 24px 0;
-  }
-
+  hr { border: none; border-top: 1px solid var(--line); margin: 24px 0; }
   h2 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--ink);
-    border-left: 2px solid var(--accent);
-    padding-left: 8px;
-    margin: 40px 0 16px;
-    letter-spacing: .01em;
+    font-size: 1.25rem; font-weight: 500;
+    border-left: 2px solid var(--accent); padding-left: 8px;
+    margin: 40px 0 16px; letter-spacing: .01em;
   }
-  h3 {
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: var(--ink);
-    margin: 24px 0 8px;
-  }
-
-  p { margin: 8px 0; color: var(--ink); }
+  h3 { font-size: 1.02rem; font-weight: 500; margin: 22px 0 8px; }
+  p { margin: 8px 0; }
   p.sec { color: var(--ink-2); }
   strong { font-weight: 500; }
-  .accent { color: var(--accent); }
-
-  .table-wrap {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 8px 16px;
-    margin: 16px 0;
-  }
-  table { width: 100%; border-collapse: collapse; font-size: .92rem; }
-  th {
-    text-align: left;
-    font-weight: 500;
-    color: var(--ink-2);
-    padding: 8px;
-    border-bottom: 1px solid var(--line);
-    font-family: system-ui, -apple-system, 'PingFang SC', sans-serif;
-    font-size: .78rem;
-    letter-spacing: .06em;
-  }
-  td {
-    padding: 7px 8px;
-    border-bottom: 1px solid var(--line-soft);
-    color: var(--ink);
-  }
-  tr:last-child td { border-bottom: none; }
-  .num {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-variant-numeric: tabular-nums;
-    font-size: .88rem;
-  }
+  .num { font-family: 'JetBrains Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; font-size: .88rem; }
   .up { color: var(--up); }
   .down { color: var(--down); }
-
-  ul, ol { padding-left: 18px; }
+  .table-wrap { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 8px 16px; margin: 16px 0; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  th { text-align: left; font-weight: 500; color: var(--ink-2); padding: 8px; border-bottom: 1px solid var(--line);
+       font-family: system-ui, -apple-system, 'PingFang SC', sans-serif; font-size: .78rem; letter-spacing: .06em; }
+  td { padding: 7px 8px; border-bottom: 1px solid var(--line-soft); }
+  tr:last-child td { border-bottom: none; }
+  ul { padding-left: 18px; }
   li { margin: .3em 0; }
   li::marker { color: var(--accent); }
-
-  .tag {
-    display: inline-flex;
-    padding: 1px 8px;
-    font-size: .72rem;
-    font-weight: 500;
-    border-radius: 4px;
-    background: var(--accent-soft);
-    color: var(--accent-hover);
-    font-family: system-ui, -apple-system, 'PingFang SC', sans-serif;
-    letter-spacing: .05em;
-    margin-right: 6px;
-    vertical-align: 1px;
-  }
-  .tag-pos { background: rgba(139,58,58,.08); color: var(--up); }
-  .tag-neg { background: rgba(123,174,127,.12); color: #5D8461; }
-  .tag-mid { background: rgba(122,96,88,.08); color: var(--ink-2); }
-
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 20px 24px;
-    margin: 16px 0;
-  }
-  .card p { margin: 6px 0; }
+  blockquote { border-left: 2px solid var(--accent); padding: 4px 0 4px 14px; color: var(--ink-2); font-style: italic; margin: 12px 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin: 16px 0; }
   .card-title {
     font-family: system-ui, -apple-system, 'PingFang SC', sans-serif;
-    font-size: .78rem;
-    letter-spacing: .14em;
-    color: var(--accent);
-    margin-bottom: 12px;
+    font-size: .78rem; letter-spacing: .14em; color: var(--accent); margin-bottom: 12px;
   }
-  .divider { border-top: 1px solid var(--line); margin: 14px 0; }
-
-  blockquote {
-    border-left: 2px solid var(--accent);
-    padding: 4px 0 4px 14px;
-    color: var(--ink-2);
-    font-style: italic;
-    margin: 12px 0;
-  }
-
-  .disclaimer {
-    margin-top: 40px;
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
-    font-size: .82rem;
-    color: var(--ink-3);
+  .tag {
+    display: inline-block;
     font-family: system-ui, -apple-system, 'PingFang SC', sans-serif;
-    letter-spacing: .03em;
-    line-height: 1.7;
+    font-size: .72rem; letter-spacing: .08em;
+    background: var(--tag-bg); color: var(--accent);
+    border-radius: 2px; padding: 1px 7px; margin-right: 6px;
   }
-
+  .tag-warn { background: var(--tag-warn); color: #8A5A20; }
+  .divider { border-top: 1px solid var(--line); margin: 14px 0; }
+  .disclaimer {
+    margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-size: .82rem; color: var(--ink-3);
+    font-family: system-ui, -apple-system, 'PingFang SC', sans-serif;
+    letter-spacing: .03em; line-height: 1.7;
+  }
   @media (max-width: 480px) {
     body { padding: 24px 14px 48px; }
     h1 { font-size: 1.6rem; }
-    .table-wrap { padding: 6px 8px; overflow-x: auto; }
   }
 </style>
 </head>
@@ -187,17 +100,16 @@
 <div class="page">
 
   <header>
-    <div class="kicker">MARKET REVIEW · 收盘复盘</div>
+    <div class="kicker">MARKET REVIEW · 盘中复盘</div>
     <h1>市场复盘报告</h1>
-    <p class="sub">2026 年 8 月 5 日 · 收盘 · 半导体领涨，科创50 大涨 4.78%</p>
-    <div class="meta">数据截至 8 月 5 日 23:30（含晚间外盘更新）· 行情接口：东财 / 新浪 · 消息面：财联社 / 21世纪经济报道 / 上海证券报 / 中信证券研报</div>
+    <p class="sub">2026 年 8 月 6 日 · 盘中 14:30 · 高低切换日：权重护盘，双创回调</p>
+    <div class="meta">数据截至 8 月 6 日 14:30（A股盘中，15:00 收盘后可刷新最终版）· 行情接口：东财 / 新浪 · 消息面：财联社 / 新浪财经 / 知乎复盘 / 每经</div>
   </header>
 
   <hr>
 
-  <!-- 一、今日A股复盘 -->
-  <h2>一、今日 A 股收盘复盘</h2>
-  <p>指数低开高走，午后全线走强：创业板竞价一度低开近 3.3%，随后直线拉升，半导体全线爆发带动科创50 大涨 4.78%，尾盘指数集体收在日内高位附近。</p>
+  <h2>一、今日 A 股盘中复盘</h2>
+  <p>指数分化：沪指靠权重（煤炭、石油、电信）红盘，深市与创业板回调。早盘硬科技一度共振大涨、双创领涨，临近午盘煤炭/石油/大消费拉升，双创跳水翻绿，典型的高低切换 + 周四效应。</p>
 
   <div class="table-wrap">
     <table>
@@ -205,146 +117,98 @@
         <tr><th>指数</th><th style="text-align:right">盘中点位</th><th style="text-align:right">涨跌幅</th></tr>
       </thead>
       <tbody>
-        <tr><td>上证指数</td><td class="num" style="text-align:right">3878.43</td><td class="num up" style="text-align:right">+1.47%</td></tr>
-        <tr><td>深证成指</td><td class="num" style="text-align:right">14144.20</td><td class="num up" style="text-align:right">+1.86%</td></tr>
-        <tr><td>创业板指</td><td class="num" style="text-align:right">3535.14</td><td class="num up" style="text-align:right">+1.32%</td></tr>
-        <tr><td>科创 50</td><td class="num" style="text-align:right">1693.67</td><td class="num up" style="text-align:right"><strong>+4.78%</strong></td></tr>
-        <tr><td>沪深 300</td><td class="num" style="text-align:right">4658.15</td><td class="num up" style="text-align:right">+1.24%</td></tr>
+        <tr><td>上证指数</td><td class="num" style="text-align:right">3895.87</td><td class="num up" style="text-align:right">+0.45%</td></tr>
+        <tr><td>深证成指</td><td class="num" style="text-align:right">14083.12</td><td class="num down" style="text-align:right">-0.43%</td></tr>
+        <tr><td>创业板指</td><td class="num" style="text-align:right">3509.00</td><td class="num down" style="text-align:right">-0.74%</td></tr>
+        <tr><td>科创 50</td><td class="num" style="text-align:right">1698.17</td><td class="num up" style="text-align:right">+0.27%</td></tr>
+        <tr><td>沪深 300</td><td class="num" style="text-align:right">4645.81</td><td class="num down" style="text-align:right">-0.26%</td></tr>
       </tbody>
     </table>
   </div>
 
   <ul>
-    <li><strong>成交额</strong>：沪市 12087 亿 + 深市 14509 亿 ≈ <strong>2.66 万亿</strong>，较昨日（2.21 万亿）放量逾 4000 亿，创近期新高。</li>
-    <li><strong>市场广度</strong>：沪市 1484 涨 / 785 跌，深市 1981 涨 / 839 跌，<strong>涨停 103 / 跌停 1</strong>。午后广度明显走阔，赚钱效应扩散。</li>
-    <li><strong>资金流入</strong>：电子 +301.5 亿（+4.89%）、有色金属 +135.8 亿（+4.32%）、半导体 +129.6 亿（+5.72%）、消费电子、元件、工业金属、铜。</li>
-    <li><strong>资金流出</strong>：通信网络设备 -28.5 亿（昨日领涨今日回吐）、传媒、食品饮料、白酒。</li>
-    <li><strong>概念领涨</strong>：高带宽内存 <span class="num up">+7.77%</span>、中芯概念 <span class="num up">+6.82%</span>、MLCC <span class="num up">+6.74%</span>、存储芯片 <span class="num up">+6.32%</span>、光刻机 <span class="num up">+5.97%</span>、先进封装 <span class="num up">+5.64%</span>。</li>
-    <li><strong>领跌方向</strong>：白酒（古井贡酒领跌）、油气（通源石油跌近 4%）、食品饮料。</li>
+    <li><strong>成交额</strong>：沪市 10489 亿 + 深市 12222 亿 ≈ <strong>2.27 万亿</strong>（截至 14:30）；沪市半日 8045 亿，较昨日同期（7652 亿）继续放大，增量资金仍在进场。</li>
+    <li><strong>市场广度</strong>：沪市 1114 涨 / 1155 跌，深市 1306 涨 / 1530 跌，<strong>跌多涨少，红盘约三成</strong>；涨停 74 / 跌停 1。</li>
+    <li><strong>资金流入</strong>：印制电路板 +27.9 亿（+3.41%）、集成电路封测 +23.6 亿（+3.36%）、通信网络设备 +16.4 亿（+3.21%）、半导体材料 +15.2 亿（+4.06%）、通信设备、煤炭 +11.2 亿（<strong>+4.90%</strong>）、煤炭开采 <strong>+5.51%</strong>。</li>
+    <li><strong>资金流出</strong>：<strong>电力设备 -87.3 亿</strong>（-0.68%，今日流出居首）、计算机 -86.3 亿、数字芯片设计 -68.1 亿、传媒 -56 亿、<strong>半导体 -42.2 亿</strong>（指数 +1.72% 但资金净流出，量价背离信号）。</li>
+    <li><strong>概念领涨</strong>：昨日连板 +5.45%、氦气概念 +4.31%、工业气体 +3.63%、转基因 +3.13%、6G +2.87%、粮食概念 +2.72%。</li>
   </ul>
 
-  <blockquote>一句话定性：昨日 CPO/光通信点火，今日半导体/存储接力，AI 硬件主线内部轮动向上。指数普涨、科创领跑，放量 2.66 万亿确认修复行情延续。</blockquote>
+  <blockquote>一句话定性：昨日科技狂欢后的降温日。资金从高位科技（半导体/计算机/电力设备）撤出，转向煤炭/石油/大消费等低位防御，指数靠权重撑住，成长股内部开始分化。</blockquote>
 
-  <!-- 二、外盘与联动 -->
-  <h2>二、外盘与联动</h2>
-
-  <h3>隔夜美股（8/4 收盘，道指标普再创新高）</h3>
+  <h2>二、外盘与联动（关键警示：韩股暴跌）</h2>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th>指数</th><th style="text-align:right">收盘</th><th style="text-align:right">涨跌幅</th></tr>
+        <tr><th>市场</th><th style="text-align:right">点位</th><th style="text-align:right">涨跌幅</th></tr>
       </thead>
       <tbody>
-        <tr><td>道琼斯</td><td class="num" style="text-align:right">54085.88</td><td class="num up" style="text-align:right">+1.71%</td></tr>
-        <tr><td>标普 500</td><td class="num" style="text-align:right">7736.52</td><td class="num up" style="text-align:right">+1.79%</td></tr>
-        <tr><td>纳斯达克</td><td class="num" style="text-align:right">26584.99</td><td class="num up" style="text-align:right">+2.59%</td></tr>
+        <tr><td>道琼斯（盘中）</td><td class="num" style="text-align:right">54349.12</td><td class="num up" style="text-align:right">+0.49%</td></tr>
+        <tr><td>标普 500（盘中）</td><td class="num" style="text-align:right">7723.55</td><td class="num down" style="text-align:right">-0.17%</td></tr>
+        <tr><td>纳斯达克（盘中）</td><td class="num" style="text-align:right">26363.44</td><td class="num down" style="text-align:right"><strong>-0.83%</strong></td></tr>
+        <tr><td>韩国 KOSPI</td><td class="num" style="text-align:right">6287.29</td><td class="num down" style="text-align:right"><strong>-4.71%</strong></td></tr>
+        <tr><td>日经 225</td><td class="num" style="text-align:right">65629.66</td><td class="num down" style="text-align:right">-1.01%</td></tr>
+        <tr><td>恒生指数</td><td class="num" style="text-align:right">25442.41</td><td class="num down" style="text-align:right"><strong>-1.83%</strong></td></tr>
+        <tr><td>台湾加权</td><td class="num" style="text-align:right">44396.70</td><td class="num down" style="text-align:right">-0.48%</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="sec">费城半导体指数涨超 6%，连续第四个交易日上涨（此前 7 月曾暴跌 20.6%）。光通信、存储集体爆发：Coherent、迈威尔科技涨超 12%，英特尔、闪迪涨超 10%，康宁 +9%，Lumentum、SK 海力士 +8%，美光、AMD 涨逾 7%。</p>
-
-  <h3>美股盘中（8/5 北京时间 23:30）</h3>
-  <p class="sec">道指 54,526（<span class="num up">+0.81%</span>）继续刷新历史新高，标普 7,743（+0.09%）；<strong>纳指 26,562（-0.09%）转跌</strong>，科技权重出现分歧，AI 硬件短线获利回吐。金银因美伊协议预期 + 美联储宽松预期大涨。</p>
-
-  <h3>今日亚太（存储带动的半导体狂欢）</h3>
   <ul>
-    <li>日经 225 <span class="num up">+3.66%</span>（66,300），韩国 KOSPI <span class="num up">+3.76%</span>（6,598），台湾加权 <span class="num up">+2.88%</span>（44,612）。</li>
-    <li>恒生指数 25,916 <span class="num up">+0.24%</span>，昨日 -0.6% 后企稳回升。</li>
+    <li><strong>韩国 KOSPI 暴跌 4.71%</strong>：存储"双雄"三星电子、SK 海力士重挫拖累（合计占 KOSPI 市值约一半），美国科技股走弱传导至亚太，昨日还 +3.76%、今日 -4.71%，情绪逆转剧烈。对 A股半导体短线情绪是直接利空参照。</li>
+    <li>纳指连续转弱（-0.83%），AI 硬件高位分歧；道指靠传统权重续创新高，美股内部同样在高低切换。</li>
+    <li>恒指 -1.83% 大跌，港股科技承压；日经 -1.01%、台湾 -0.48%。</li>
+    <li>黄金 4314.78（+0.22%）高位整理，白银 62.09（-0.32%）；WTI 75.19（-0.05%）；美元指数 99.75，USDCNH 6.7487。</li>
   </ul>
 
-  <h3>汇率与商品</h3>
-  <ul>
-    <li>美元指数 99.71（-0.16%），USDCNH <span class="num">6.7474</span>，人民币维持强势。</li>
-    <li><strong>COMEX 黄金 4316（+3.94%，大涨）</strong>，现货黄金突破 4170 美元；白银 62.69（+4.06%）。中信证券：金价 4000 附近大概率是本轮底部区域，预计年内金价回到上行通道。</li>
-    <li>WTI 原油 75.05（-0.95%），霍尔木兹海峡协议预期持续压制油价。</li>
-  </ul>
-
-  <h3>联动推演</h3>
-  <p class="sec">费半连续四日反攻 + 存储缺货逻辑（三星/SK 海力士/美光 2027 产能售罄）直接点燃今日 A股半导体主线；日韩暴涨强化亚洲科技共振。人民币强势 + 油价回落，外部环境对 A股整体偏暖。</p>
-
-  <!-- 三、消息面梳理 -->
   <h2>三、消息面梳理</h2>
+  <p><span class="tag">中性偏多</span><strong>FCC 光模块禁令影响钝化</strong></p>
+  <p class="sec">美国 FCC 拟禁中国新型数据中心光模块（800G/1.6T）的草案引发 8/5 光模块大跌（中际旭创 -7.27%、成交 675 亿刷新历史天量），但多家分析：禁令仅针对未获授权的未来新品、仍在起草阶段、不限制海外产能供货，且中际旭创/新易盛董秘办回应"FCC 尚未出台限制性文件"。今日通信网络设备资金回流 +16.4 亿，恐慌情绪初步消化（来源：一财 / 每经 / 虎嗅，中高可信）。</p>
 
-  <p><span class="tag tag-pos">利好</span><strong>贵金属大涨，中信看多金价</strong></p>
-  <p class="sec">COMEX 黄金单日大涨近 4%，现货突破 4170 美元。中信证券：金价回撤已逼近历史极值，4000 附近大概率是本轮底部，霍尔木兹局势对金价从压制转助推，叠加美联储宽松预期 + 美国军费推高赤字，年内金价回到上行通道（来源：中信证券研报，中高可信）。</p>
+  <p><span class="tag tag-warn">利空警示</span><strong>韩股暴跌 4.71%，存储双雄重挫</strong></p>
+  <p class="sec">三星、SK 海力士遭集中抛售，KOSPI 权重近半由存储双雄构成。盛宝策略师：市场已不再认为存储强势会自动利好整个 AI 交易，存储周期强化反而可能在明日拖累更广泛的 AI 交易。对 A股半导体、存储链是明确的外部降温信号（来源：财联社 / moomoo，高可信）。</p>
 
-  <p><span class="tag tag-pos">利好</span><strong>存储产能售罄至 2027</strong></p>
-  <p class="sec">三星、SK 海力士、美光 2027 年普通 DRAM 与 HBM 产能已全部售罄；NAND 预计 8 月底前敲定明年配额，供应偏向 AI/HPC，手机 PC 配额有限（来源：TrendForce 集邦咨询，高可信）。存储短缺叙事延续至 2027。</p>
+  <p><span class="tag">中性</span><strong>高低切换，防御承接</strong></p>
+  <p class="sec">煤炭 +5.51%、石油、电信运营、大消费拉升，转基因/粮食/氦气/工业气体走强，资金从高位科技撤向低位防御；电力设备今日流出 87 亿居首（来源：盘面观察，中可信）。</p>
 
-  <p><span class="tag tag-pos">利好</span><strong>存储龙头业绩新高</strong></p>
-  <p class="sec">三星电子、SK 海力士 2026Q2 业绩均创历史新高，Q3 涨价预期延续；三星受益传统 DRAM 强需求与 HBM 份额扩张（来源：国泰海通 / Counterpoint 分析师评述，高可信）。</p>
-
-  <p><span class="tag tag-pos">利好</span><strong>模拟芯片周期反转</strong></p>
-  <p class="sec">TI（模拟业务 +26%）、意法（+26%）、恩智浦（+19%）、安森美四大模拟巨头 2026Q2 财报：工业、汽车、数据中心需求同步恢复，库存降至正常、交期延长，AI 为模拟芯片打开新增长空间（来源：公司财报，高可信）。</p>
-
-  <p><span class="tag tag-pos">利好</span><strong>央行 5000 亿买断式逆回购</strong></p>
-  <p class="sec">今日央行以固定数量、利率招标、多重价位中标方式开展 5000 亿元买断式逆回购，期限 3 个月（92 天），流动性呵护信号明确（来源：人民银行公告，官方高可信）。</p>
-
-  <p><span class="tag tag-pos">利好</span><strong>AI 硬件业绩验证</strong></p>
-  <p class="sec">工业富联今日涨停：半年度净利同比 +93%~103%，AI 服务器营收增长超 230%，配套数据中心交换机出货增长 1.4 倍，并推出 10–20 亿回购计划（来源：公司公告，高可信）。</p>
-
-  <p><span class="tag tag-pos">利好</span><strong>政策底确认</strong></p>
-  <p class="sec">政治局会议 + 国常会均部署有效扩大内需，促消费政策坚持惠民生与促消费结合（来源：中国证券报头版，官方高可信）。华鑫证券谭倩：政策底确认，看好 A股 8 月修复行情。</p>
-
-  <p><span class="tag tag-mid">谨慎</span><strong>主线快速轮动</strong></p>
-  <p class="sec">昨日领涨的通信网络设备今日资金流出 28.3 亿，CPO 早盘低开后分化。热点从光通信切向半导体/存储，追高日内切换风险大（中高可信，盘面观察）。</p>
-
-  <p><span class="tag tag-neg">利空</span><strong>白酒/油气走弱</strong></p>
-  <p class="sec">白酒板块震荡走低（古井贡酒领跌），油气板块集体下挫（通源石油跌近 4%），红利价值风格继续让位成长（中高可信）。</p>
-
-  <!-- 四、市场情绪与强弱判断 -->
   <h2>四、市场情绪与强弱判断</h2>
-  <p><strong>数据画像</strong>：全天成交 2.66 万亿（放量 4000 亿）+ 涨停 103 / 跌停 1 + 存储/半导体主线爆发 + 午后广度走阔 → 情绪<strong>偏热</strong>，量能配合，属于健康强势。</p>
+  <p><strong>数据画像</strong>：量能继续放大（沪市半日 8045 亿）+ 涨停 74 / 跌停 1 + 跌多涨少 + 资金弃科技、取防御 → 情绪<strong>中性偏降温</strong>，是连续两日大涨后的正常分歧日。</p>
 
-  <p><strong>盘面结构（关键）</strong>：早盘是"半导体单骑救主"，午后扩散为普涨。</p>
+  <p><strong>盘面结构（关键）</strong>：今天是切换日，不是普跌日。</p>
   <ul>
-    <li>支撑走强的证据：科创50 +4.78% 领涨并收在日内高位；存储/半导体设备/有色/消费电子四线并进；成交 2.66 万亿创近期新高；隔夜费半 +6% + 日韩共振。</li>
-    <li>需要警惕的证据：白酒、食品饮料、传媒走弱；主线从光通信切到存储，轮动速度加快；创业板早盘低开 3.3% 说明分歧仍在，放量后短线获利盘积累。</li>
+    <li>支撑偏多的证据：量能仍在放大，增量资金未撤；沪指站上 3895 创反弹新高；通信（光模块禁令钝化）、PCB、封测仍有结构性机会；昨日连板 +5.45%，梯队赚钱效应延续。</li>
+    <li>需要警惕的证据：韩股 -4.71% 是亚太科技情绪的重大外部变量；半导体指数涨但资金流出 42 亿（量价背离）；电力设备 -87 亿流出居首；创业板回调 -0.74%；双创盘中冲高跳水，说明上方抛压真实存在。</li>
   </ul>
-  <blockquote>结论：修复行情延续，量能健康，方向偏多；连续两日放量大涨后，短线追高风险上升，宜持股待涨、回踩再补。强弱评级：<strong>强</strong>（指数、主线、广度三线共振）。</blockquote>
+  <blockquote>结论：连续两日大涨后的正常分歧，方向未坏但短线风险上升。若明日韩股继续大跌、纳指续跌，A股科技大概率补跌；若外盘企稳，则回踩是上车机会。强弱评级：<strong>中性</strong>（量能健康、结构切换、外部承压）。</blockquote>
 
-  <!-- 五、仓位决策卡 -->
   <h2>五、仓位决策卡</h2>
-
   <div class="card">
-    <div class="card-title">触发条件复盘（对照 8/4 报告）</div>
-    <p>✅ 8/4 设定：「量能维持 2 万亿以上 + 沪指站上 3840 → 修复延续，可对科技主线小幅补仓」。今日收盘成交 2.66 万亿、沪指收 3878 站稳 3840，<strong>两个条件均已确认触发</strong>。</p>
-    <p>⛔ 未触发：缩量至 1.5 万亿以下、创业板回吐过半涨幅（均未出现）。</p>
-
-    <div class="divider"></div>
-    <div class="card-title">操作建议：条件已确认，但连续两日大涨后，宜持股待涨、回踩再补</div>
+    <div class="card-title">市场温度</div>
+    <p>中性偏降温 —— 量能放大但跌多涨少，资金高低切换，外部（韩股/纳指）承压。</p>
+  </div>
+  <div class="card">
+    <div class="card-title">操作建议：不追高，等回踩；警惕韩股传导</div>
     <ul>
-      <li>触发条件已确认，但两日累计涨幅已大（创业板两日 +7%），<strong>不追高、等回踩</strong>是当前更优选择。</li>
-      <li>若坚持补仓，方向优先<strong>半导体设备 / 存储链</strong>（今日资金主攻方向），而非追高已两日大涨的光通信；单次不超总仓位 5%，分批执行。</li>
-      <li>已持仓者（半导体、信创、5G、通信、电网设备）今日受益，无需动作，拿住即可。</li>
-      <li>明日观察：若高开回落、量能萎缩，则是短线兑现信号；若回踩 5 日线缩量企稳，可启动补仓流程。</li>
+      <li>已持仓者（半导体、信创、5G、通信、电网设备）：<strong>拿住不动作</strong>，两日大涨后不追、不恐慌，等外部变量明朗。</li>
+      <li>想补仓者：<strong>今天不是补仓日</strong>。韩股暴跌 + 半导体资金流出 + 电力设备流出居首，三个信号都不支持今天进场。等回踩 5 日线缩量企稳，或外盘企稳后再启动。</li>
+      <li>电网设备：昨日讨论的补仓方向，今日板块资金流出居首（-87 亿），验证了"等回踩"的判断，继续等。</li>
+      <li>若明天因外盘大跌出现急跌：是观察机会而非抄底机会，先看 5 日线支撑与量能，不接飞刀。</li>
     </ul>
-
-    <div class="divider"></div>
+  </div>
+  <div class="card">
     <div class="card-title">情景推演（明日）</div>
     <ul>
-      <li><strong>乐观（约 35%）</strong>：量能维持 2.5 万亿+，半导体延续强势 → 持仓待涨，回踩 5 日线不破可补。</li>
-      <li><strong>中性（约 45%）</strong>：冲高回落或高位震荡，主线内部轮动（存储歇、算力应用/有色接力）→ 持有观望，不追切换。</li>
-      <li><strong>谨慎（约 20%）</strong>：放量滞涨或缩量回调，指数回踩 3840 下方 → 补仓暂停，等二次确认。</li>
+      <li><strong>乐观（约 30%）</strong>：外盘企稳，量能维持，科技回踩后拉起 → 持股待涨，回踩不破可补。</li>
+      <li><strong>中性（约 45%）</strong>：震荡消化，煤炭/防御续涨、科技分化 → 持有观望，不追切换。</li>
+      <li><strong>谨慎（约 25%）</strong>：韩股续跌传导，半导体补跌、指数回踩 3840 下方 → 暂停补仓，等二次确认。</li>
     </ul>
   </div>
 
-  <!-- 六、风险提示 -->
-  <h2>六、风险提示</h2>
-  <ol>
-    <li><strong>短线风险</strong>：连续两日放量大涨（创业板两日累计约 +7%），短线获利盘丰厚，追高容易高位站岗；宜等回踩确认。</li>
-    <li><strong>结构性风险</strong>：今日涨跌家数接近，指数红盘背后是半导体单边拉动，一旦半导体尾盘回落，指数与个股可能快速变脸。</li>
-    <li><strong>轮动加速</strong>：光通信→半导体切换仅隔一日，热点持续性存疑，追高日内波动大。</li>
-    <li><strong>持仓集中度</strong>：科技（A股）+ 科技（QDII）双高集中，若风格切回红利/价值无对冲；浮亏未平，补仓节奏务必克制。</li>
-    <li><strong>地缘尾部风险</strong>：美伊谈判、霍尔木兹海峡未落地，油价、金价波动可能反复。</li>
-  </ol>
-
   <hr>
 
-  <blockquote>与你持仓直接相关的三句话：条件确认触发，但两日累计涨幅已大，今天不是补仓日，是持股日。要补就补半导体/存储，等回踩，一次不超 5%。深亏的 QDII 与通信类拿住，修复轮动还没轮到它们。</blockquote>
+  <blockquote>与你持仓直接相关的三句话：今天别动手，两个信号（韩股暴跌、半导体资金流出）都指向观望。电网设备今天资金流出居首，昨天的"等回踩"判断是对的。明天若外盘企稳、A股回踩 5 日线缩量，那才是补仓窗口。</blockquote>
 
   <div class="disclaimer">
-    免责声明：本报告仅供信息参考与决策辅助，不构成投资建议。市场有风险，任何基于本报告的买卖决策由使用者自行承担。数据来源已逐条标注，硬数据以行情接口为准，消息面已区分事实与解读。
+    本报告为盘中数据（14:30），收盘后或有变动，15:00 后可刷新为收盘版。本报告仅供个人复盘参考，不构成投资建议。市场有风险，决策需独立。
   </div>
 
 </div>
